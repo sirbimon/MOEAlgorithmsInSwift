@@ -24,6 +24,16 @@ import Foundation
         return array.last
     }
     
+    //implement count
+    var count: Int {
+        return array.count
+    }
+    
+    //implement isEmpty
+    var isEmpty: Bool {
+        return array.isEmpty
+    }
+    
 }
 //implement description as a computed propery that conforms to customStringConvertible
 // use the var description:String {return string}
