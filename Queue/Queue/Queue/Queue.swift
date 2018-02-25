@@ -8,18 +8,18 @@
 
 import Foundation
 
-struct Queue {
-    private var array: [String] = []
+struct Queue<T> {
+    private var array: [T] = []
     
     var isEmpty: Bool {
         return array.isEmpty
     }
     
-    mutating func enqueue(element: String) {
+    mutating func enqueue(element: T) {
         array.append(element)
     }
     
-    mutating func dequeue() -> String? {
+    mutating func dequeue() -> T? {
         if array.isEmpty {
             return nil
         } else {
@@ -28,7 +28,7 @@ struct Queue {
         }
     }
     
-    var front: String? {
+    var front: T? {
         return array.first
     }
 }
