@@ -8,19 +8,19 @@
 
 import Foundation
 
- struct Stack {
-    private var array: [String] = []
+ struct Stack<Element> {
+    private var array: [Element] = []
     //implement push,
-    mutating func push(element: String) {
+    mutating func push(element: Element) {
         array.append(element)
     }
     //implement pop
-    mutating func pop() -> String? {
+    mutating func pop() -> Element? {
         return array.popLast()
     }
     
     //implement peek
-    mutating func peek() -> String? {
+    mutating func peek() -> Element? {
         return array.last
     }
     
@@ -31,7 +31,7 @@ extension Stack: CustomStringConvertible {
     var description: String {
         let topDivider = "----Stack----\n"
         let bottomDivider = "\n-------------\n"
-        let stackedElements = array.reversed().joined(separator: "\n")
+        let stackedElements = array.map {"\($0)"}.reversed().joined(separator: "\n")
         return topDivider + stackedElements + bottomDivider
     }
 }
