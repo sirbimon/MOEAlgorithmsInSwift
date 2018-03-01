@@ -9,7 +9,8 @@
 import Foundation
 
 struct Queue<T> {
-    private var array: [T] = []
+    private var array: [T?] = []
+    private var head = 0
     
     var isEmpty: Bool {
         return array.isEmpty
@@ -20,15 +21,26 @@ struct Queue<T> {
     }
     
     mutating func dequeue() -> T? {
-        if array.isEmpty {
-            return nil
-        } else {
-            //print("removing the first element in the queue \(array.first)")
-            return array.removeFirst()
+        guard head < array.count, let element = array[head] else { return nil }
+        
+        array[head] = nil
+        head += 1
+        
+        let percentage = Double(head)/Double(array.count)
+        if array.count > 50 && percentage > 0.25 {
+            array.removeFirst(head)
+            head = 0
         }
+        
+        return element
     }
     
     var front: T? {
-        return array.first
+        if isEmpty {
+            return nil
+        } else {
+            return array[head]
+        }
+        
     }
 }
